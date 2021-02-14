@@ -473,6 +473,7 @@
               <compilerArgs>
                 <!-- <arg>-Awarns</arg> --> <!-- -Awarns turns type-checking errors into warnings. -->
                 <arg>"-AsuppressWarnings=contracts.conditional.postcondition.not.satisfied"</arg>
+                <arg>"-AassumeAssertionsAreEnabled"</arg>"
               </compilerArgs>
             </configuration>
           </plugin>
@@ -530,6 +531,7 @@
                 <arg>-Xbootclasspath/p:${annotatedJdk}</arg>
                 <arg>-J-Xbootclasspath/p:${settings.localRepository}/com/google/errorprone/javac/${javac.version}/javac-${javac.version}.jar</arg>
                 <arg>"-AsuppressWarnings=contracts.conditional.postcondition.not.satisfied"</arg>
+                <arg>"-AassumeAssertionsAreEnabled"</arg>
               </compilerArgs>
             </configuration>
           </plugin>

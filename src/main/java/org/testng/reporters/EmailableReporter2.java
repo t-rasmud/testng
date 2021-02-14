@@ -274,7 +274,7 @@ public class EmailableReporter2 implements IReporter {
                 for (MethodResult methodResult : classResult.getMethodResults()) {
                     List<ITestResult> results = methodResult.getResults();
                     int resultsCount = results.size();
-                    assert resultsCount > 0 : "@AssumeAssertion(nonempty)";
+                    assert resultsCount > 0;
 
                     ITestResult firstResult = results.iterator().next();
                     String methodName = Utils.escapeHtml(firstResult
@@ -370,7 +370,7 @@ public class EmailableReporter2 implements IReporter {
             String className = classResult.getClassName();
             for (MethodResult methodResult : classResult.getMethodResults()) {
                 List<ITestResult> results = methodResult.getResults();
-                assert !results.isEmpty() : "@AssumeAssertion(nonempty)";
+                assert !results.isEmpty();
 
                 String label = Utils
                         .escapeHtml(className
@@ -473,7 +473,7 @@ public class EmailableReporter2 implements IReporter {
     protected void writeReporterMessages(List<String> reporterMessages) {
         writer.print("<div class=\"messages\">");
         Iterator<String> iterator = reporterMessages.iterator();
-        assert iterator.hasNext() : "@AssumeAssertion(iteration)";
+        assert iterator.hasNext();
         writer.print(Utils.escapeHtml(iterator.next()));
         while (iterator.hasNext()) {
             writer.print("<br/>");
@@ -655,7 +655,7 @@ public class EmailableReporter2 implements IReporter {
                 List<ITestResult> resultsList = Lists.newArrayList(results);
                 Collections.sort(resultsList, RESULT_COMPARATOR);
                 Iterator<ITestResult> resultsIterator = resultsList.iterator();
-                assert resultsIterator.hasNext() : "@AssumeAssertion(iteration)";
+                assert resultsIterator.hasNext();
 
                 ITestResult result = resultsIterator.next();
                 resultsPerMethod.add(result);
