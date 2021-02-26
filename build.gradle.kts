@@ -1,3 +1,5 @@
+import org.checkerframework.gradle.plugin.CheckerFrameworkExtension
+
 object This {
     const val version = "7.3.1"
     const val artifactId = "testng"
@@ -19,6 +21,23 @@ allprojects {
     apply<MavenPublishPlugin>()
     tasks.withType<Javadoc> {
         excludes.add("org/testng/internal/**")
+    }
+
+    apply(plugin="org.checkerframework")
+
+    configure<CheckerFrameworkExtension> {
+        checkers = listOf(
+                "org.checkerframework.checker.iteration.IterationChecker"
+        )
+    }
+
+    if (project.hasProperty("cfLocal")) {
+        val cfHome = System.getenv("CHECKERFRAMEWORK").toString()
+        dependencies {
+            compileOnly(cfHome + "/checker/dist/checker-qual.jar")
+            testCompileOnly(cfHome + "/checker/dist/checker-qual.jar")
+            checkerFramework(cfHome + "/checker/dist/checker.jar")
+        }
     }
 }
 
@@ -71,6 +90,7 @@ plugins {
     groovy
     id("org.sonarqube").version("2.8")
     id("com.jfrog.bintray").version("1.8.3") // Don't use 1.8.4, crash when publishing
+    id("org.checkerframework").version("0.5.16").apply(false)
 }
 
 dependencies {
